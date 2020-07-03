@@ -20,7 +20,7 @@ import java.util.Date;
 
 public class Config  {
 
-    @Scheduled(fixedRate = 1000)
+   // @Scheduled(fixedRate = 1000)
     public void cronJobSch() {
         //Condition
         System.out.println("The Cron Job Started Spring Version ==>" + SpringVersion.getVersion());
