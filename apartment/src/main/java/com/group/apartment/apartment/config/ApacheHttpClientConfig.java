@@ -69,7 +69,7 @@ public class ApacheHttpClientConfig {
         };
     }
 
-    @Bean
+   /* @Bean
     public Runnable idleConnectionMonitor(PoolingHttpClientConnectionManager pool) {
         return new Runnable() {
             @Override
@@ -84,7 +84,7 @@ public class ApacheHttpClientConfig {
                 }
             }
         };
-    }
+    }*/
 
     @Bean
     public TaskScheduler taskScheduler() {

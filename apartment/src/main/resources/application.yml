@@ -1,0 +1,29 @@
+logging:
+  level:
+    org.springframework.security: DEBUG
+server:
+  port: 8082
+  ssl:
+    enabled: true
+    key-store-password: tomcat
+    key-store: classpath:mykeystore.p12
+    key-store-type: PKCS12
+    key-alias: tomcat
+  servlet:
+    context-path: /app
+
+
+spring:
+  security:
+    user:
+      name: aravind
+      password: aravind
+      
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
