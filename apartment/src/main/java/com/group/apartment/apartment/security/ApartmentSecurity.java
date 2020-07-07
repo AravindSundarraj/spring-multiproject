@@ -20,19 +20,40 @@ public class ApartmentSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    Oauth2AuthenticationSuccessHandler oauth2authSuccessHandler;
+
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         log.info("Override Default Security {}:", httpSecurity);
         /*httpSecurity.authorizeRequests().anyRequest().authenticated()
                 .and().httpBasic();*/
 
 
-        httpSecurity.authorizeRequests()
-                .antMatchers("/login","/register", "/login", "/h2-console/**", "/mylogin").permitAll()
+/*        httpSecurity.authorizeRequests()
+                .antMatchers("/login","/register", "/login", "/h2-console/**", "/mylogin"
+                , "/hello").
+                permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/app/weather");
+                .formLogin().loginPage("/login").defaultSuccessUrl("/hello").
+                and().csrf().disable().rememberMe().key("mykey")
+        .and().oauth2Login()
+                .loginPage("/login").successHandler(oauth2authSuccessHandler);*/
 
-                //and().csrf().disable();
+
+        //-----------------
+
+        httpSecurity
+                .authorizeRequests()
+                .antMatchers("/register","/login","/h2-console/**","/mylogin","/verify/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage("/login")
+                .and().csrf().disable().rememberMe().key("myremembermekey")
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login").deleteCookies("remember-me")
+
+                .and().oauth2Login().loginPage("/login").successHandler(oauth2authSuccessHandler);
+
 
     }
 

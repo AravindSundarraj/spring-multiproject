@@ -18,7 +18,14 @@ spring:
     user:
       name: aravind
       password: aravind
-      
+    oauth2:
+     client:
+       registration:
+         google:
+           client-id: 678237292462-5kec3th1dknfd8vle8nkfheluo8q084h.apps.googleusercontent.com
+           client-secret: 5v23_IpgBwefUszhlV7W_5WT
+
+
   h2:
     console:
       path: /h2-console
